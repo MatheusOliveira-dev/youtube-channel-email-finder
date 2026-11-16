@@ -1,0 +1,17 @@
+storage/
+__pycache__/
+*.pyc
+.venv/
+apify_storage/
+.idea/
+.vscode/
+*.log
+# Measurement outputs and the raw sample carry creators' addresses; only the
+# address-free sample_channels.public.json is published.
+sample_channels.json
+hitrate_measured.json
+headroom.json
+out.json
+# Account and store-listing drafts, not part of the actor.
+brand/
+PUBLISHING.md

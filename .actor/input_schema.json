@@ -1,0 +1,122 @@
+{
+  "title": "YouTube Channel Email Finder",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "title": "Input mode",
+      "type": "string",
+      "description": "Pick how channels are supplied. The two sections below correspond to this choice: only the section matching the selected mode is used, the other is ignored.",
+      "editor": "select",
+      "enum": [
+        "channels",
+        "search"
+      ],
+      "enumTitles": [
+        "Channels - I provide the channel list",
+        "Search - find channels by query"
+      ],
+      "default": "channels"
+    },
+    "channels": {
+      "title": "Channels to look up",
+      "type": "array",
+      "description": "Channel URLs, @handles or UC... ids, mixed freely. Only read when Input mode is Channels. The defaults are three channels that publish a contact address, so a run with untouched settings returns something.",
+      "editor": "stringList",
+      "sectionCaption": "Mode A: your own channel list",
+      "sectionDescription": "Used when Input mode is set to Channels. Ignored in Search mode.",
+      "default": [
+        "@mkbhd",
+        "@NetworkChuck",
+        "@LinusTechTips"
+      ]
+    },
+    "searchQueries": {
+      "title": "Niche keywords to search",
+      "type": "array",
+      "description": "Each keyword is searched on YouTube and the resulting channels are scanned. Only read when Input mode is Search.",
+      "editor": "stringList",
+      "prefill": [
+        "skincare routine",
+        "personal finance investing"
+      ],
+      "sectionCaption": "Mode B: find channels by keyword",
+      "sectionDescription": "Used when Input mode is set to Search. Ignored in Channels mode."
+    },
+    "maxChannelsPerQuery": {
+      "title": "Max channels per query",
+      "type": "integer",
+      "description": "How many channels to take from each keyword. Search mode only.",
+      "default": 20,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxChannels": {
+      "title": "Max channels (budget cap)",
+      "type": "integer",
+      "description": "Hard ceiling on channels scanned in this run, so a broad keyword cannot run away.",
+      "default": 100,
+      "minimum": 1
+    },
+    "minSubscribers": {
+      "title": "Minimum subscribers",
+      "type": "integer",
+      "description": "Skip channels below this size. Measured rates: 42% for 100K or more, 41% for 10K to 100K, and 21% below 10K, so a floor around 10,000 keeps a run away from the part of the range where addresses are scarce.",
+      "editor": "number",
+      "prefill": 10000,
+      "sectionCaption": "Filters and sources",
+      "sectionDescription": "These apply to both modes."
+    },
+    "maxSubscribers": {
+      "title": "Maximum subscribers",
+      "type": "integer",
+      "description": "Skip channels above this size, for targeting smaller creators.",
+      "editor": "number"
+    },
+    "scanVideoDescriptions": {
+      "title": "Also scan recent video descriptions",
+      "type": "boolean",
+      "description": "Second source. Many creators put business contact in a video description rather than the About tab. Runs only when the About tab came up empty.",
+      "default": true
+    },
+    "enrichFromLinkedSite": {
+      "title": "Also follow the channel's linked website",
+      "type": "boolean",
+      "description": "Third source. Follows the creator's own linked site and its contact page, resolving shortened links. Runs only when the first two came up empty.",
+      "default": true
+    },
+    "includeChannelsWithoutEmail": {
+      "title": "Include channels with no email found",
+      "type": "boolean",
+      "description": "Adds the scanned-but-empty channels to the dataset, showing everything that was checked. These rows are never charged: billing applies only to channels where an address was found.",
+      "default": false
+    },
+    "language": {
+      "title": "Language (hl)",
+      "type": "string",
+      "description": "YouTube interface language code.",
+      "default": "en",
+      "editor": "textfield",
+      "sectionCaption": "Advanced",
+      "sectionDescription": "Defaults are fine for most runs."
+    },
+    "country": {
+      "title": "Country (gl)",
+      "type": "string",
+      "description": "YouTube country code. Affects which channels search returns.",
+      "default": "US",
+      "editor": "textfield"
+    },
+    "concurrency": {
+      "title": "Concurrency",
+      "type": "integer",
+      "description": "Parallel channel scans. 5 is safe; 10 is faster and was measured without blocks.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 10
+    }
+  },
+  "required": [
+    "mode"
+  ]
+}

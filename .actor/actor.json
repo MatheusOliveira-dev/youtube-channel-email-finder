@@ -1,0 +1,31 @@
+{
+  "actorSpecification": 1,
+  "name": "youtube-channel-email-finder",
+  "title": "YouTube Channel Email Scraper (Measured Hit Rate)",
+  "description": "Finds business contact emails for YouTube channels. Measured hit rate of 35.4%, published with its method; billed only for channels that yield an address.",
+  "seoTitle": "YouTube Channel Email Finder - Creator Contact Emails",
+  "seoDescription": "Find business contact emails for YouTube channels by niche or channel list. Measured 35.4% hit rate, published with its method. Billed only for channels that return an address.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "categories": [
+    "LEAD_GENERATION",
+    "SOCIAL_MEDIA",
+    "MARKETING"
+  ],
+  "minMemoryMbytes": 256,
+  "maxMemoryMbytes": 2048,
+  "defaultRunOptions": {
+    "build": "latest",
+    "memoryMbytes": 512,
+    "timeoutSecs": 3600
+  },
+  "meta": {
+    "templateId": "python-start"
+  },
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "dockerfile": "../Dockerfile",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "YouTube channel contacts",
+  "description": "One row per channel, carrying the contact address, the subscriber count and the source the address was read from.",
+  "properties": {
+    "contacts": {
+      "type": "string",
+      "title": "Contacts (JSON)",
+      "description": "Every scanned channel that yielded a contact address, as JSON.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?clean=true&format=json"
+    },
+    "contactsCsv": {
+      "type": "string",
+      "title": "Contacts (CSV)",
+      "description": "The same rows as CSV, ready for a spreadsheet or a CRM import.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?clean=true&format=csv"
+    },
+    "emailsOnly": {
+      "type": "string",
+      "title": "Email list (CSV)",
+      "description": "Channel name and primary email only, for a quick outreach list.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?clean=true&format=csv&fields=title,primaryEmail,subscribers,channelUrl"
+    },
+    "datasetInConsole": {
+      "type": "string",
+      "title": "Browse results",
+      "description": "The dataset in Apify Console, with the Contacts table view.",
+      "template": "{{links.consoleDatasetUrl}}"
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "YouTube channel contact",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+      "channelId": {
+        "type": "string",
+        "description": "Stable YouTube channel id (UC...)"
+      },
+      "channelUrl": {
+        "type": "string",
+        "description": "Direct link to the channel"
+      },
+      "title": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Channel name"
+      },
+      "subscribers": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Subscriber count as a number, for sorting and filtering"
+      },
+      "subscribersText": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Subscriber count as YouTube displays it, e.g. 21.4M"
+      },
+      "videoCountText": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Number of public videos, as displayed"
+      },
+      "emails": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Every contact address found, business-style inboxes first"
+      },
+      "primaryEmail": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Best candidate address, for a single-column export"
+      },
+      "emailCount": {
+        "type": "integer",
+        "description": "How many addresses were found"
+      },
+      "emailSource": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "about",
+          "video_description",
+          "linked_site",
+          null
+        ],
+        "description": "Which source produced the address"
+      },
+      "sourceUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "For linked_site, the exact page the address was read from"
+      },
+      "externalLinks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "The creator's own links, affiliate and shortened links last"
+      },
+      "queryMatched": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Search query that surfaced this channel, in search mode"
+      },
+      "hasEmail": {
+        "type": "boolean",
+        "description": "Whether any address was found"
+      }
+    },
+    "required": [
+      "channelId",
+      "channelUrl",
+      "emails",
+      "emailCount",
+      "hasEmail"
+    ]
+  },
+  "views": {
+    "overview": {
+      "title": "Contacts",
+      "description": "Channels with a contact address, newest first",
+      "transformation": {
+        "fields": [
+          "title",
+          "primaryEmail",
+          "emails",
+          "subscribers",
+          "emailSource",
+          "sourceUrl",
+          "channelUrl",
+          "queryMatched"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "title": {
+            "label": "Channel",
+            "format": "text"
+          },
+          "primaryEmail": {
+            "label": "Primary email",
+            "format": "text"
+          },
+          "emails": {
+            "label": "All emails",
+            "format": "array"
+          },
+          "subscribers": {
+            "label": "Subscribers",
+            "format": "number"
+          },
+          "emailSource": {
+            "label": "Source",
+            "format": "text"
+          },
+          "sourceUrl": {
+            "label": "Read from",
+            "format": "link"
+          },
+          "channelUrl": {
+            "label": "Channel URL",
+            "format": "link"
+          },
+          "queryMatched": {
+            "label": "Query",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+# The local virtualenv holds Windows binaries and is ~82MB; the image installs
+# its own dependencies from requirements.txt.
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Local run state and measurement artefacts.
+storage/
+apify_storage/
+crawlee_storage/
+*.log
+hitrate_measured.json
+headroom.json
+competitor_readmes.json
+
+# Development-only tooling and sample data: not used at runtime.
+tools/
+sample_channels.json
+sample_channels.public.json
+
+# Docs are published through the Store listing, not needed in the image.
+*.md
+!README.md
+
+.git/
+.gitignore
+.idea/
+.vscode/
